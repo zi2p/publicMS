@@ -2,68 +2,108 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="styles/coordinate.css">
+    <title>ph</title>
 </head>
 
 <body>
     <h1>
         Векторы. Скалярное произведение
     </h1>
-
-    <h3>
+    <h3 class="nav" align="left">
         Выберите координаты первого вектора
     </h3>
     <h4>
         x:
     </h4>
 
-<!--    <div class="ctrl">-->
-<!--        <span id="view">0</span>-->
-<!--        <input id="num" type=number min="0" max="1000" step="100" value="0">-->
-<!--        <input id="range" type="range" min="0" max="1000" step="100" value="0">-->
-<!--    </div>-->
-<!--    <div>-->
-<!--        <div class="good">-->
-<!--            <span>Good 1</span>-->
-<!--            <p class="option" data-from="100">Option 1</p>-->
-<!--            <p class="option" data-from="300">Option 2</p>-->
-<!--            <p class="option" data-from="700">Option 3</p>-->
-<!--        </div>-->
-<!--        <div class="good">-->
-<!--            <span>Good 2</span>-->
-<!--            <p class="option" data-from="100">Option 1</p>-->
-<!--            <p class="option" data-from="300">Option 2</p>-->
-<!--            <p class="option" data-from="700">Option 3</p>-->
-<!--        </div>-->
-<!--        <div class="good">-->
-<!--            <span>Good 3</span>-->
-<!--            <p class="option" data-from="100">Option 1</p>-->
-<!--            <p class="option" data-from="200">Option 2</p>-->
-<!--            <p class="option" data-from="1000">Option 3</p>-->
-<!--        </div>-->
-<!--    </div>-->
+    <input type="range" min="-10" max="10" step="1" value="0" id="x1" oninput="coordinateFirstVector()" list="num1">
+        <datalist id="num1">
+            <option>-10</option>
+            <option>-5</option>
+            <option>0</option>
+            <option>5</option>
+            <option>10</option>
+        </datalist>
+    <input type="text" id="px1">
 
-
-    <input type="range" min="-10" max="10" step="1" id="x1" oninput="coordinateFirstVector()">
-    <p id="px1"></p>
     <h4>
         y:
     </h4>
+    <p>
 <!--Добавить ползунок. Ссылка на js файл с работой ползунка.-->
-    <input type="range" min="-10" max="10" step="1" id="y1" oninput="coordinateFirstVector()">
-    <p id="py1"></p>
-
+    <input type="range" min="-10" max="10" step="1" id="y1" oninput="coordinateFirstVector()" list="num2">
+        <span>
+            
+        </span>
+        <datalist id="num2">
+            <option>-10</option>
+            <option>-5</option>
+            <option>0</option>
+            <option>5</option>
+            <option>10</option>
+        </datalist>
+    <input type="text" id="py1">
+    </p>
     <h4>
         z:
     </h4>
-    <input type="range" min="-10" max="10" step="1" id="z1" oninput="coordinateFirstVector()">
-    <p id="pz1"></p>
-    <h3>
+    <input type="range" min="-10" max="10" step="1" id="z1" oninput="coordinateFirstVector()" list="num3">
+        <datalist id="num3">
+            <option>-10</option>
+            <option>-5</option>
+            <option>0</option>
+            <option>5</option>
+            <option>10</option>
+        </datalist>
+    <input type="text" id="pz1">
+
+    <h3 class="nav" align="right">
         Выберите координаты второго вектора
+
+
+    <!--Добавить ползунок. Ссылка на js файл с работой ползунка.-->
+        <h4>
+            x:
+        </h4>
+
+        <input type="range" min="-10" max="10" step="1" value="0" id="x2" oninput="coordinateFirstVector()" list="num12">
+            <datalist id="num12">
+                <option>-10</option>
+                <option>-5</option>
+                <option>0</option>
+                <option>5</option>
+                <option>10</option>
+            </datalist>
+        <h4><div id="px2"></div></h4>
+
+        <h4>
+            y:
+        </h4>
+        <!--Добавить ползунок. Ссылка на js файл с работой ползунка.-->
+        <input type="range" min="-10" max="10" step="1" id="y2" oninput="coordinateFirstVector()" list="num22">
+            <datalist id="num22">
+                <option>-10</option>
+                <option>-5</option>
+                <option>0</option>
+                <option>5</option>
+                <option>10</option>
+            </datalist>
+        <p id="py2"></p>
+
+        <h4>
+            z:
+        </h4>
+        <input type="range" min="-10" max="10" step="1" id="z2" oninput="coordinateFirstVector()" list="num32">
+            <datalist id="num32">
+                <option>-10</option>
+                <option>-5</option>
+                <option>0</option>
+                <option>5</option>
+                <option>10</option>
+            </datalist>
+        <p id="pz2"></p>
     </h3>
-
-<!--Добавить ползунок. Ссылка на js файл с работой ползунка.-->
-
 
     <!--Блок счёта. Вывод ответа. Ссылка на js файл с рассчетами.-->
 
