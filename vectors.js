@@ -1,20 +1,20 @@
 function coordinateFirstVector() {
-    var x1=document.getElementById('x1'); //rng - это Input
-    var y1=document.getElementById('y1'); //rng - это Input
-    var z1=document.getElementById('z1'); //rng - это Input
+    var x1=document.getElementById('x1');
+    var y1=document.getElementById('y1'); // это Input
+    var z1=document.getElementById('z1');
     var px1=document.getElementById('px1'); // p - абзац
     var py1=document.getElementById('py1'); // p - абзац
     var pz1=document.getElementById('pz1'); // p - абзац
 
-    px1.innerHTML=x1.value;
+    px1.value=x1.value;
     py1.innerHTML=y1.value;
     pz1.innerHTML=z1.value;
 }
 
 function coordinateSecondVector() {
-    var x2=document.getElementById('x2'); //rng - это Input
-    var y2=document.getElementById('y2'); //rng - это Input
-    var z2=document.getElementById('z2'); //rng - это Input
+    var x2=document.getElementById('x2'); //  это Input
+    var y2=document.getElementById('y2');
+    var z2=document.getElementById('z2');
     var px2=document.getElementById('px2'); // p - абзац
     var py2=document.getElementById('py2'); // p - абзац
     var pz2=document.getElementById('pz2'); // p - абзац
@@ -39,6 +39,38 @@ function coordinateSecondVector() {
 //         });
 //     });
 // }
-//
-// rng.addEventListener('input', () => set(rng.value));
-// num.addEventListener('change', () => set(num.value));
+
+rng.addEventListener('input', () => set(rng.value));
+num.addEventListener('change', () => set(num.value));
+
+
+
+// создаем деления на ползунке
+let values = [];
+
+$("datalist > option").each((index, item) => {
+    values.push($(item).html());
+});
+
+let min = (obj) => {
+    var a = obj[0];
+    for (var i = 1; i < obj.length; i++) {
+        if (obj[i] < a) {
+            a = obj[i];
+        }
+    }
+    return a;
+}
+
+$("input[type='range']").on("input", (e) => {
+    let element = $(e.currentTarget);
+    let value = element.val();
+
+    let differenceArr = [];
+    values.forEach((item, index) => {
+        differenceArr.push(Math.abs(item - value));
+    });
+    let minDifferense = min(differenceArr);
+    let newValue = values[differenceArr.indexOf(minDifferense)];
+    element.val(newValue);
+});
