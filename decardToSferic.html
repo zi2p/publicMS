@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Переход от декартовых к сферическим координатам</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        h1 {
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+        }
+        .cart-coords, .spherical-coords {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right: 50px;
+        }
+        .cart-coords p, .spherical-coords p {
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #visualization {
+            width: 500px;
+            height: 500px;
+            margin-top: 50px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<h1>Переход от декартовых к сферическим координатам</h1>
+<div class="container">
+    <div class="cart-coords">
+        <h2>Декартовы координаты</h2>
+        <p>x = <input type="number" id="x"></p>
+        <p>y = <input type="number" id="y"></p>
+        <p>z = <input type="number" id="z"></p>
+    </div>
+    <div class="spherical-coords">
+        <h2>Сферические координаты</h2>
+        <p>r = <span id="r"></span></p>
+        <p>&theta; = <span id="theta"></span></p>
+        <p>&phi; = <span id="phi"></span></p>
+    </div>
+</div>
+<div class="container">
+    <button id="convert-btn">Перевести</button>
+</div>
+<!--<div id="visualization"></div>-->
+
+<script>
+    // Получаем элементы, в которые будем выводить значения координат
+    let xEl = document.getElementById("x");
+    let yEl = document.getElementById("y");
+    let zEl = document.getElementById("z");
+    let rEl = document.getElementById("r");
+    let thetaEl = document.getElementById("theta");
+    let phiEl = document.getElementById("phi");
+
+    // Функция для перевода из декартовых координат в сферические
+    function cartToSpherical(x, y, z) {
+        // Вычисляем радиус вектора
+        let r = Math.sqrt(x*x + y*y + z*z);
+        // Вычисляем угол между осью x и вектором
+        let theta = Math.atan2(y, x);
+        // Вычисляем угол между вектором и вертикальной осью z
+        let phi = Math.acos(z / r);
+        // Возвращаем массив с полученными значениями
+        return [r, theta, phi];
+    }
+
+    // Функция для обновления значений на странице
+    function updateValues(x, y, z) {
+        // Вызываем функцию для перевода координат и сохраняем результат в переменную
+        let sphericalCoords = cartToSpherical(x, y, z);
+
+        // Выводим полученные сферические координаты на страницу
+        rEl.textContent = sphericalCoords[0];
+        thetaEl.textContent = sphericalCoords[1];
+        phiEl.textContent = sphericalCoords[2];
+
+        // Визуализация точки в 3D
+        let visualization = document.getElementById("visualization");
+        // Создаем новый экземпляр класса THREE.Scene для сцены
+        let scene = new THREE.Scene();
+        // Создаем новый экземпляр класса THREE.PerspectiveCamera для камеры
+        let camera = new THREE.PerspectiveCamera(75, visualization.offsetWidth / visualization.offsetHeight, 0.1, 1000);
+        // Создаем новый экземпляр класса THREE.WebGLRenderer для рендеринга сцены
+        let renderer = new THREE.WebGLRenderer();
+        renderer.setSize(visualization.offsetWidth, visualization.offsetHeight);
+        visualization.appendChild(renderer.domElement);
+
+        // Создаем новый экземпляр класса THREE.SphereGeometry для создания сферы
+        let geometry = new THREE.SphereGeometry(sphericalCoords[0], 32, 32);
+        // Создаем новый экземпляр класса THREE.MeshBasicMaterial для материала сферы
+        let material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        // Создаем новый экземпляр класса THREE.Mesh для создания объекта сферы
+        let sphere = new THREE.Mesh(geometry, material);
+        // Добавляем объект на сцену
+        scene.add(sphere);
+
+        // Устанавливаем позицию камеры
+        camera.position.z = 10;
+
+        // Создаем новый экземпляр класса THREE.AmbientLight для добавления света на сцену
+        let light = new THREE.AmbientLight(0xffffff, 0.5);
+        // Добавляем свет на сцену
+        scene.add(light);
+
+        // Функция для анимации объектов на сцене
+        function animate() {
+            requestAnimationFrame(animate);
+            // Вращаем сферу вокруг своей оси
+            sphere.rotation.x += 0.01;
+            sphere.rotation.y += 0.01;
+            // Рендерим сцену
+            renderer.render(scene, camera);
+        }
+        animate();
+    }
+
+    // Получаем кнопку и добавляем обработчик события на клик
+    let convertBtn = document.getElementById("convert-btn");
+    convertBtn.addEventListener("click", function() {
+        // Получаем значения из полей ввода
+        let xVal = parseFloat(xEl.value);
+        let yVal = parseFloat(yEl.value);
+        let zVal = parseFloat(zEl.value);
+
+        // Вызываем функцию для обновления значений на странице
+        updateValues(xVal, yVal, zVal);
+    });
+</script>
+</body>
+</html>
