@@ -1,101 +1,156 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:text-align="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Векторы. Скалярное произведение</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
-<label>Выберите координаты первого вектора:</label><br>
-<input type="text" id="x1" placeholder="x1"><br>
-<input type="text" id="y1" placeholder="y1"><br>
-<input type="text" id="z1" placeholder="z1"><br>
-
-<label>Выберите координаты второго вектора:</label><br>
-<input type="text" id="x2" placeholder="x2"><br>
-<input type="text" id="y2" placeholder="y2"><br>
-<input type="text" id="z2" placeholder="z2"><br>
-
-<button onclick="calculate()">Рассчитать</button>
-
-<p id="result"></p>
-
-<div id="plot"></div>
-
-<script>
-    function calculate() {
-        var x1 = parseFloat(document.getElementById("x1").value);
-        var y1 = parseFloat(document.getElementById("y1").value);
-        var z1 = parseFloat(document.getElementById("z1").value);
-        var x2 = parseFloat(document.getElementById("x2").value);
-        var y2 = parseFloat(document.getElementById("y2").value);
-        var z2 = parseFloat(document.getElementById("z2").value);
-
-        function angle(v1, v2) {
-            angle = Math.acos((v1[0]*v2[0] + v1[1]*v2[1] + v1[2]*v2[2]) / (Math.sqrt(v1[0]*v1[0] + v1[1]*v1[1] + v1[2]*v1[2]) * Math.sqrt(v2[0]*v2[0] + v2[1]*v2[1] + v2[2]*v2[2])));
-            if (isNaN(angle)) {
-                angle = Math.PI;
-            }
-            if (angle <= Math.PI) {
-                return angle;
-            } else {
-                return 2 * Math.PI - angle;
-            }
+    <style>
+        div {
+            display: flex;
+            justify-content: center;
         }
-
-        var vec1 = [x1, y1, z1];
-        var vec2 = [x2, y2, z2];
-
-        var trace1 = {
-            x: [0, vec1[0]],
-            y: [0, vec1[1]],
-            z: [0, vec1[2]],
-            type: 'scatter3d',
-            mode: 'lines',
-            line: {
-                color: 'blue',
-                width: 4
-            },
-            name: 'Вектор 1'
-        };
-
-        var trace2 = {
-            x: [0, vec2[0]],
-            y: [0, vec2[1]],
-            z: [0, vec2[2]],
-            type: 'scatter3d',
-            mode: 'lines',
-            line: {
-                color: 'red',
-                width: 4
-            },
-            name: 'Вектор 2'
-        };
-
-        var layout = {
-            scene: {
-                xaxis:{title: 'X'},
-                yaxis:{title: 'Y'},
-                zaxis:{title: 'Z'}
-            },
-            margin: {
-                l: 0,
-                r: 0,
-                b: 0,
-                t: 0
-            }
-        };
-
-        var data = [trace1, trace2];
-
-        if (vec1[0] == vec2[0] && vec1[1] == vec2[1] && vec1[2] == vec2[2] || (x1 == 0 && y1 == 0 && z1 == 0 || x2 == 0 && y2 == 0 && z2 == 0)) {
-            document.getElementById("result").innerHTML = "Полученный угол равен: 0 радиан";
-        } else {
-            document.getElementById("result").innerHTML = "Полученный угол равен: " + angle(vec1, vec2).toFixed(5) + " радиан";
+        button {
+            flex-direction: column;
+            align-content: center;
+            align-items: center;
+            margin: 100px;
         }
+        colomn_vectors {
+            flex-direction: column;
+            margin: 10px;
+        }
+        body_1 {
+            display: flex;
+            font-family: sans-serif;
+            color: #000080;
+            align-content: center;
+            align-items: center;
+            margin: 10px;
 
-        Plotly.newPlot('plot', data, layout);
-    }
-</script>
-</body>
+        }
+        label {
+            font-family: sans-serif;
+            align-content: center;
+            align-items: center;
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            color: #000080;
+            margin: 10px;
+        }
+    </style>
+
+    <body_1>
+        <label>Выберите координаты первого вектора:</label><br>
+
+            <colomn_vectors>
+                <input type="text" id="x1" placeholder="x1"><br>
+                <input type="text" id="y1" placeholder="y1"><br>
+                <input type="text" id="z1" placeholder="z1"><br>
+            </colomn_vectors>
+
+        <label>Выберите координаты второго вектора:</label><br>
+
+            <colomn_vectors>
+                <input type="text" id="x2" placeholder="x2"><br>
+                <input type="text" id="y2" placeholder="y2"><br>
+                <input type="text" id="z2" placeholder="z2"><br>
+            </colomn_vectors>
+    </body_1>
+
+    <div>
+        <button onclick="calculate()">Рассчитать</button>
+    </div>
+
+    <body_1>
+            <p id="result"></p>
+    </body_1>
+
+        <div id="plot"></div>
+
+        <script>
+            function calculate() {
+                var x1 = parseFloat(document.getElementById("x1").value);
+                var y1 = parseFloat(document.getElementById("y1").value);
+                var z1 = parseFloat(document.getElementById("z1").value);
+                var x2 = parseFloat(document.getElementById("x2").value);
+                var y2 = parseFloat(document.getElementById("y2").value);
+                var z2 = parseFloat(document.getElementById("z2").value);
+
+                function angle(v1, v2) {
+                    angle = Math.acos((v1[0] * v2[0] + v1[1] * v2[1] + v1[2] * v2[2]) /
+                        (Math.sqrt(v1[0] * v1[0] + v1[1] * v1[1] + v1[2] * v1[2]) *
+                            Math.sqrt(v2[0] * v2[0] + v2[1] * v2[1] + v2[2] * v2[2])));
+                    if (isNaN(angle)) {
+                        angle = Math.PI;
+                    }
+                    if (angle <= Math.PI) {
+                        return angle;
+                    } else {
+                        return 2 * Math.PI - angle;
+                    }
+                }
+
+                var vec1 = [x1, y1, z1];
+                var vec2 = [x2, y2, z2];
+
+                var trace1 = {
+                    x: [0, vec1[0]],
+                    y: [0, vec1[1]],
+                    z: [0, vec1[2]],
+                    type: 'scatter3d',
+                    mode: 'lines',
+                    line: {
+                        color: 'blue',
+                        width: 4
+                    },
+                    name: 'Вектор 1'
+                };
+
+                var trace2 = {
+                    x: [0, vec2[0]],
+                    y: [0, vec2[1]],
+                    z: [0, vec2[2]],
+                    type: 'scatter3d',
+                    mode: 'lines',
+                    line: {
+                        color: 'red',
+                        width: 4
+                    },
+                    name: 'Вектор 2'
+                };
+
+                var layout = {
+                    scene: {
+                        xaxis: {title: 'X'},
+                        yaxis: {title: 'Y'},
+                        zaxis: {title: 'Z'}
+                    },
+                    margin: {
+                        l: 0,
+                        r: 0,
+                        b: 0,
+                        t: 0
+                    }
+                };
+
+                var data = [trace1, trace2];
+
+                if (vec1[0] === vec2[0] && vec1[1] === vec2[1] && vec1[2] === vec2[2]
+                    || (x1 === 0 && y1 === 0 && z1 === 0 || x2 === 0 && y2 === 0 && z2 === 0)) {
+                    document.getElementById("result").innerHTML = "Полученный угол равен: 0 радиан";
+                } else {
+                    document.getElementById("result").innerHTML = "Полученный угол равен: "
+                        + angle(vec1, vec2).toFixed(5) + " радиан";
+                }
+                Plotly.newPlot('plot', data, layout);
+
+            }
+        </script>
+    </body>
 </html>
+
+
+
