@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Материальная точка</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+
+<h2>Определение положения материальной точки</h2>
+
+<div id="positionGraph"></div>
+<div id="velocityGraph"></div>
+
+<script>
+  function positionAtTime(initialPosition, initialVelocity, acceleration, startTime, endTime) 
+    let time = endTime - startTime;
+    let finalPosition = initialPosition + initialVelocity * time + 0.5 * acceleration * time * time;
+    return finalPosition;
+  
+
+  function velocityAtTime(initialVelocity, acceleration, time) 
+    let finalVelocity = initialVelocity + acceleration * time;
+    return finalVelocity;
+  
+
+  function accelerationAtTime(time, coefficient) 
+    let acceleration = coefficient * Math.pow(time, 2); // пример степенной зависимости
+    return acceleration;
+  
+
+  // Пример использования функций
+  let initialPosition = 10;
+  let initialVelocity = 5;
+  let acceleration = 2;
+  let startTime = 0;
+  let endTime = 3;
+
+  console.log("Положение материальной точки в момент времени", endTime, ":", positionAtTime(initialPosition, initialVelocity, acceleration, startTime, endTime));
+  console.log("Скорость материальной точки в момент времени", endTime, ":", velocityAtTime(initialVelocity, acceleration, endTime));
+
+  // Построение графиков
+  let timeValues = [];
+  let velocityValues = [];
+  let positionValues = [];
+  for (let t = 0; t <= endTime; t += 0.1) 
+    timeValues.push(t);
+    velocityValues.push(velocityAtTime(initialVelocity, acceleration, t));
+    positionValues.push(positionAtTime(initialPosition, initialVelocity, acceleration, startTime, t));
+  
+
+  // График зависимости скорости от времени
+  var velocityData = [
+    x: timeValues,
+    y: velocityValues,
+    type: 'scatter',
+    mode: 'lines',
+    name: 'Скорость от времени'
+  ];
+
+  var velocityLayout = 
+    title: 'Зависимость скорости от времени',
+    xaxis: 
+      title: 'Время'
+    ,
+    yaxis: 
+      title: 'Скорость'
+    
+  ;
+
+  Plotly.newPlot('velocityGraph', velocityData, velocityLayout);
+
+  // График зависимости положения от времени
+  var positionData = [
+    x: timeValues,
+    y: positionValues,
+    type: 'scatter',
+    mode: 'lines',
+    name: 'Положение от времени'
+  ];
+
+  var positionLayout = 
+    title: 'Зависимость положения от времени',
+    xaxis: 
+      title: 'Время'
+    ,
+    yaxis: 
+      title: 'Положение'
+    
+  ;
+
+  Plotly.newPlot('positionGraph', positionData, positionLayout);
+</script>
+
+</body>
+</html>
