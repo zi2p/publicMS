@@ -1,95 +1,117 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Материальная точка</title>
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Равноускоренное движение</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
+<div>
+    <label for="time">Время (с):</label>
+    <input type="range" min="10" max="100" value="15" class="slider" id="timeRange">
+    <span id="timeValue">50</span>
+</div>
+<div>
+    <label for="initialPosition">Начальная позиция (м):</label>
+    <input type="range" min="-10" max="10" value="-10" class="slider" id="positionRange">
+    <span id="positionValue">0</span>
+</div>
+<div>
+    <label for="initialVelocity">Начальная скорость (м/с):</label>
+    <input type="range" min="-10" max="10" value="10" class="slider" id="velocityRange">
+    <span id="velocityValue">0</span>
+</div>
+<div>
+    <label for="acceleration">Ускорение (м/с^2):</label>
+    <input type="range" min="-10" max="10" value="-2" class="slider" id="accelerationRange">
+    <span id="accelerationValue">0</span>
+</div>
 
-<h2>Определение положения материальной точки</h2>
-
-<div id="positionGraph"></div>
-<div id="velocityGraph"></div>
+<div id="plot"></div>
 
 <script>
-  function positionAtTime(initialPosition, initialVelocity, acceleration, startTime, endTime) 
-    let time = endTime - startTime;
-    let finalPosition = initialPosition + initialVelocity * time + 0.5 * acceleration * time * time;
-    return finalPosition;
-  
+    let timeSlider = document.getElementById("timeRange");
+    let timeOutput = document.getElementById("timeValue");
+    timeOutput.innerHTML = timeSlider.value;
 
-  function velocityAtTime(initialVelocity, acceleration, time) 
-    let finalVelocity = initialVelocity + acceleration * time;
-    return finalVelocity;
-  
+    timeSlider.oninput = function() {
+        timeOutput.innerHTML = this.value;
+        updatePlot();
+    }
 
-  function accelerationAtTime(time, coefficient) 
-    let acceleration = coefficient * Math.pow(time, 2); // пример степенной зависимости
-    return acceleration;
-  
+    let positionSlider = document.getElementById("positionRange");
+    let positionOutput = document.getElementById("positionValue");
+    positionOutput.innerHTML = positionSlider.value;
 
-  // Пример использования функций
-  let initialPosition = 10;
-  let initialVelocity = 5;
-  let acceleration = 2;
-  let startTime = 0;
-  let endTime = 3;
+    positionSlider.oninput = function() {
+        positionOutput.innerHTML = this.value;
+        updatePlot();
+    }
 
-  console.log("Положение материальной точки в момент времени", endTime, ":", positionAtTime(initialPosition, initialVelocity, acceleration, startTime, endTime));
-  console.log("Скорость материальной точки в момент времени", endTime, ":", velocityAtTime(initialVelocity, acceleration, endTime));
+    let velocitySlider = document.getElementById("velocityRange");
+    let velocityOutput = document.getElementById("velocityValue");
+    velocityOutput.innerHTML = velocitySlider.value;
 
-  // Построение графиков
-  let timeValues = [];
-  let velocityValues = [];
-  let positionValues = [];
-  for (let t = 0; t <= endTime; t += 0.1) 
-    timeValues.push(t);
-    velocityValues.push(velocityAtTime(initialVelocity, acceleration, t));
-    positionValues.push(positionAtTime(initialPosition, initialVelocity, acceleration, startTime, t));
-  
+    velocitySlider.oninput = function() {
+        velocityOutput.innerHTML = this.value;
+        updatePlot();
+    }
 
-  // График зависимости скорости от времени
-  var velocityData = [
-    x: timeValues,
-    y: velocityValues,
-    type: 'scatter',
-    mode: 'lines',
-    name: 'Скорость от времени'
-  ];
+    let accelerationSlider = document.getElementById("accelerationRange");
+    let accelerationOutput = document.getElementById("accelerationValue");
+    accelerationOutput.innerHTML = accelerationSlider.value;
 
-  var velocityLayout = 
-    title: 'Зависимость скорости от времени',
-    xaxis: 
-      title: 'Время'
-    ,
-    yaxis: 
-      title: 'Скорость'
-    
-  ;
+    accelerationSlider.oninput = function() {
+        accelerationOutput.innerHTML = this.value;
+        updatePlot();
+    }
+    updatePlot();
+    function updatePlot() {
+        let t = parseInt(timeSlider.value);
+        let x0 = parseInt(positionSlider.value);
+        let v0 = parseInt(velocitySlider.value);
+        let a = parseInt(accelerationSlider.value);
 
-  Plotly.newPlot('velocityGraph', velocityData, velocityLayout);
+        let time = Array.from({ length: t + 1 }, (_, i) => i); // массив времени от 0 до t
+        let coords = time.map((ti) => x0 + v0 * ti + 0.5 * a * ti ** 2); // массив координат
 
-  // График зависимости положения от времени
-  var positionData = [
-    x: timeValues,
-    y: positionValues,
-    type: 'scatter',
-    mode: 'lines',
-    name: 'Положение от времени'
-  ];
+        let velos = time.map((ti) => v0 + a * ti); // массив скоростей
+        let accels = new Array(t + 1).fill(a); // массив ускорений
 
-  var positionLayout = 
-    title: 'Зависимость положения от времени',
-    xaxis: 
-      title: 'Время'
-    ,
-    yaxis: 
-      title: 'Положение'
-    
-  ;
+        let trace1 = {
+            x: time,
+            y: coords,
+            type: 'scatter',
+            name: 'Координата x материальной точки'
+        };
 
-  Plotly.newPlot('positionGraph', positionData, positionLayout);
+        let trace2 = {
+            x: time,
+            y: velos,
+            type: 'scatter',
+            name: 'Скорость v_x материальной точки'
+        };
+
+        let trace3 = {
+            x: time,
+            y: accels,
+            type: 'scatter',
+            name: 'Ускорение a_x материальной точки'
+        };
+
+        let layout = {
+            title: 'Кинематика материальной точки, движущейся с постоянным ускорением a_0',
+            xaxis: {
+                title: 'Время, с'
+            },
+            yaxis: {
+                title: 'Значение'
+            }
+        };
+
+        Plotly.newPlot('plot', [trace1, trace2, trace3], layout);
+    }
 </script>
-
 </body>
 </html>
