@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Циклоида</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<label for="radius">Введите радиус r:</label>
+<input type="range" id="radius" name="radius" min="10" max="100" value="50">
+<span id="radiusValue"></span>
+
+<canvas id="myCanvas" width="750" height="250"></canvas>
+
+<script>
+    var canvas = document.getElementById('myCanvas');
+    var ctx = canvas.getContext('2d');
+
+    var radiusSlider = document.getElementById('radius');
+    var radiusValue = document.getElementById('radiusValue');
+    radiusValue.innerHTML = radiusSlider.value;
+
+    radiusSlider.oninput = function() {
+        radiusValue.innerHTML = this.value;
+        drawCycloid(this.value);
+    }
+
+    function drawCycloid(r) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (var t = 0; t <= 30 * Math.PI; t += 0.01) { // изменение предела цикла
+            var x = r * (t - Math.sin(t));
+            var y = canvas.height - r * (1 - Math.cos(t)); // инвертирование графика
+            ctx.beginPath();
+            ctx.arc(x, y, 5, 0, 2 * Math.PI);
+            ctx.stroke();
+        }
+    }
+
+    drawCycloid(radiusSlider.value);
+</script>
+</body>
+</html>
