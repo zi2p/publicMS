@@ -1,101 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Векторы. Скалярное произведение</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="styles/index.css">
 </head>
+
 <body>
-<label>Выберите координаты первого вектора:</label><br>
-<input type="text" id="x1" placeholder="x1"><br>
-<input type="text" id="y1" placeholder="y1"><br>
-<input type="text" id="z1" placeholder="z1"><br>
+  
+    <div class="container">
+        <div class="cart-coords">
+            <h2>Выберите координаты первого вектора:</h2>
+            <p>x1 = <input type="text" id="x1"></p>
+            <p>y1 = <input type="text" id="y1"></p>
+            <p>z1 = <input type="text" id="z1"></p>
+        </div>
+        <div class="spherical-coords">
+            <h2>Выберите координаты второго вектора:</h2>
+            <p>x2 = <input type="text" id="x2"></p>
+            <p>y2 = <input type="text" id="y2"></p>
+            <p>z2 = <input type="text" id="z2"></p>
+        </div>
+    </div>
 
-<label>Выберите координаты второго вектора:</label><br>
-<input type="text" id="x2" placeholder="x2"><br>
-<input type="text" id="y2" placeholder="y2"><br>
-<input type="text" id="z2" placeholder="z2"><br>
+    <div class="container">
+        <button onclick="calculate()">Рассчитать</button>
+    </div>
 
-<button onclick="calculate()">Рассчитать</button>
+    <p id="result"></p>
+    <div id="plot"></div>
 
-<p id="result"></p>
-
-<div id="plot"></div>
-
-<script>
-    function calculate() {
-        var x1 = parseFloat(document.getElementById("x1").value);
-        var y1 = parseFloat(document.getElementById("y1").value);
-        var z1 = parseFloat(document.getElementById("z1").value);
-        var x2 = parseFloat(document.getElementById("x2").value);
-        var y2 = parseFloat(document.getElementById("y2").value);
-        var z2 = parseFloat(document.getElementById("z2").value);
-
-        function angle(v1, v2) {
-            angle = Math.acos((v1[0]*v2[0] + v1[1]*v2[1] + v1[2]*v2[2]) / (Math.sqrt(v1[0]*v1[0] + v1[1]*v1[1] + v1[2]*v1[2]) * Math.sqrt(v2[0]*v2[0] + v2[1]*v2[1] + v2[2]*v2[2])));
-            if (isNaN(angle)) {
-                angle = Math.PI;
-            }
-            if (angle <= Math.PI) {
-                return angle;
-            } else {
-                return 2 * Math.PI - angle;
-            }
-        }
-
-        var vec1 = [x1, y1, z1];
-        var vec2 = [x2, y2, z2];
-
-        var trace1 = {
-            x: [0, vec1[0]],
-            y: [0, vec1[1]],
-            z: [0, vec1[2]],
-            type: 'scatter3d',
-            mode: 'lines',
-            line: {
-                color: 'blue',
-                width: 4
-            },
-            name: 'Вектор 1'
-        };
-
-        var trace2 = {
-            x: [0, vec2[0]],
-            y: [0, vec2[1]],
-            z: [0, vec2[2]],
-            type: 'scatter3d',
-            mode: 'lines',
-            line: {
-                color: 'red',
-                width: 4
-            },
-            name: 'Вектор 2'
-        };
-
-        var layout = {
-            scene: {
-                xaxis:{title: 'X'},
-                yaxis:{title: 'Y'},
-                zaxis:{title: 'Z'}
-            },
-            margin: {
-                l: 0,
-                r: 0,
-                b: 0,
-                t: 0
-            }
-        };
-
-        var data = [trace1, trace2];
-
-        if (vec1[0] == vec2[0] && vec1[1] == vec2[1] && vec1[2] == vec2[2] || (x1 == 0 && y1 == 0 && z1 == 0 || x2 == 0 && y2 == 0 && z2 == 0)) {
-            document.getElementById("result").innerHTML = "Полученный угол равен: 0 радиан";
-        } else {
-            document.getElementById("result").innerHTML = "Полученный угол равен: " + angle(vec1, vec2).toFixed(5) + " радиан";
-        }
-
-        Plotly.newPlot('plot', data, layout);
-    }
-</script>
+    <script src="script/vectorsAngle.js"></script> 
 </body>
 </html>

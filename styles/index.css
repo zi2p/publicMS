@@ -1,0 +1,282 @@
+/* body {
+    font-family: sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+.cart-coords, .spherical-coords {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 50px;
+}
+.cart-coords p, .spherical-coords p {
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#visualization {
+    width: 500px;
+    height: 500px;
+    margin-top: 50px;
+    border: 1px solid black;
+} */
+
+
+
+body {
+    margin: 5px 0 5px 5px;
+    font-family: "Comic Sans MS", sans-serif;
+    color: #000;
+    background-color: #fff;
+   }
+
+   h1 {
+    text-align: center;
+    font-size: 2em;
+    font-weight: 70;
+    }
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50px;
+    }
+    .cart-coords, .spherical-coords {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-right: 50px;
+    }
+    .cart-coords p, .spherical-coords p {
+        margin-bottom: 10px;
+    }
+  
+  
+  h2 {
+    /* position: relative; */
+    font-size: 1em;
+    font-weight: 70;
+  }
+  
+  h3 {
+    position: relative;
+    font-size: 0.5em;
+    font-weight: 70;
+  }
+  
+  h4 {
+    position: relative;
+    font-size: 0.5em;
+    font-weight: 70;
+  }
+  
+  h5 {
+    position: relative;
+    font-size: 0.5em;
+    font-weight: 70;
+    text-align: center;
+    color: #000;
+  }
+  
+  p {
+    position: relative;
+    font-size: 1em;
+    font-weight: 30;
+  }
+  
+  footer {
+    color: #000;
+  }
+
+  .button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    }
+  
+  .lable {
+    width: 150px;
+    position: sticky;
+  }
+
+  #result {
+    text-align: center;
+  }
+
+  .face {
+    width: 200px;
+    margin: 10px; 
+  }
+  
+  .advertising {
+    width: 90px; 
+    box-align: center;
+  }
+  
+  .header_title {
+    position: right;
+    font-size: 4em;
+    font-weight: 70;
+  }
+  
+  .nav {
+    position: right;
+    font-size: 1.4em;
+    font-weight: 70;
+    color: #000;
+  }
+  
+  .form {
+    position: relative;
+    width: 500px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .people {
+    position: relative;
+    width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  
+  
+  
+  
+  img {
+    width: 20%;  
+    position: relative;
+  }
+  
+  /* General styles */
+  .sim-slider {
+    position: relative;
+    align-content: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .sim-slider-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    position: relative;
+    align-content: center
+  }
+  
+  .sim-slider-element {
+    width: 100%;
+    transition: opacity 1s ease-in;
+    opacity: 0;
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    display: block;
+    align-content: center
+  }
+  
+  /* Navigation item styles */
+  div.sim-slider-arrow-left,
+  div.sim-slider-arrow-right {
+    position: absolute;
+    cursor: pointer;
+    opacity: 0.6;
+    z-index: 4;
+    align-content: center
+  }
+  
+  div.sim-slider-arrow-left {
+    left: 10px;
+    top: 40%;
+    display: block;
+  }
+  
+  div.sim-slider-arrow-right {
+    right: 10px;
+    top: 40%;
+    display: block;
+  }
+  
+  div.sim-slider-arrow-left:hover {
+    opacity: 1.0;
+  }
+  
+  div.sim-slider-arrow-right:hover {
+    opacity: 1.0;
+  }
+  
+  div.sim-slider-dots {
+    width: 40%;
+    height: auto;
+    left: 0;
+    bottom: 0;
+    z-index: 3;
+    align-content: center
+  }
+  
+  span.sim-dot {
+    width: 10px;
+    height: 10px;
+    margin: 5px 7px;
+    padding: 5px;
+    display: inline-block;
+    background-color: #303030;
+    border-radius: 3px;
+    cursor: pointer;
+    align-content: center
+  }
+  
+  table {
+    width: 70%;
+    align-content: center
+  }
+  
+  tr:nth-child(even) {
+     background: #414141; 
+    }
+  tr:nth-child(odd) { 
+    background: #303030; 
+  }
+  
+  /* upload-file */
+  .upload-file__label .upload-file__text,
+  .upload-file__label .upload-file__icon path {
+      transition: .25s ease;
+  }
+  
+  .upload-file__label:hover .upload-file__text {
+      color: #303030;
+  }
+  
+  .upload-file__label:hover .upload-file__icon path {
+      fill: #bbb;
+  }
+  
+  .upload-file__label:hover {
+      border: 2px dashed #bbb;
+  }
+  
+  @media screen and (max-width:991px) {
+    .sim-slider {
+        display: none;
+    }
+  }

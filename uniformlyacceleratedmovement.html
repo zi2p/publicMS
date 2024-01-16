@@ -1,135 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Равноускоренное движение</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <style>
-        #plot1, #plot2, #plot3 {
-            max-width: 1000px;
-            max-height: 500px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles/index.css">
 </head>
+
 <body>
-<div>
-    <label>Время движения t, с:</label>
-    <input type="range" min="10" max="100" value="15" class="slider" id="timeRange">
-    <span id="timeValue">50</span>
-</div>
-<div>
-    <label>Начальная позиция x<sub>0</sub>, м:</label>
-    <input type="range" min="-10" max="10" value="-10" class="slider" id="positionRange">
-    <span id="positionValue">0</span>
-</div>
-<div>
-    <label>Начальная скорость v<sub>0</sub>, м/с:</label>
-    <input type="range" min="-10" max="10" value="10" class="slider" id="velocityRange">
-    <span id="velocityValue">0</span>
-</div>
-<div>
-    <label>Ускорение a, м/с<sup>2</sup>:</label>
-    <input type="range" min="-10" max="10" value="-2" class="slider" id="accelerationRange">
-    <span id="accelerationValue">0</span>
-</div>
-<div id="plot1"></div>
-<div id="plot2"></div>
-<div id="plot3"></div>
-<script>
-    let timeSlider = document.getElementById("timeRange");
-    let timeOutput = document.getElementById("timeValue");
-    timeOutput.innerHTML = timeSlider.value;
-    timeSlider.oninput = function() {
-        timeOutput.innerHTML = this.value;
-        updatePlot();
-    }
-    let positionSlider = document.getElementById("positionRange");
-    let positionOutput = document.getElementById("positionValue");
-    positionOutput.innerHTML = positionSlider.value;
-    positionSlider.oninput = function() {
-        positionOutput.innerHTML = this.value;
-        updatePlot();
-    }
-    let velocitySlider = document.getElementById("velocityRange");
-    let velocityOutput = document.getElementById("velocityValue");
-    velocityOutput.innerHTML = velocitySlider.value;
-    velocitySlider.oninput = function() {
-        velocityOutput.innerHTML = this.value;
-        updatePlot();
-    }
-    let accelerationSlider = document.getElementById("accelerationRange");
-    let accelerationOutput = document.getElementById("accelerationValue");
-    accelerationOutput.innerHTML = accelerationSlider.value;
+    <div>
+        <label>Время движения t, с:</label>
+        <input type="range" min="10" max="100" value="15" class="slider" id="timeRange">
+        <span id="timeValue">50</span>
+    </div>
 
-    accelerationSlider.oninput = function() {
-        accelerationOutput.innerHTML = this.value;
-        updatePlot();
-    }
-    updatePlot();
-    function updatePlot() {
-        let t = parseInt(timeSlider.value);
-        let x0 = parseInt(positionSlider.value);
-        let v0 = parseInt(velocitySlider.value);
-        let a = parseInt(accelerationSlider.value);
-        t *= 10;
-        let time = Array.from({ length: t + 1 }, (_, i) => i * 0.1); // массив времени от 0 до t
-        let coords = time.map((ti) => x0 + v0 * ti + 0.5 * a * ti ** 2); // массив координат
-        let velos = time.map((ti) => v0 + a * ti); // массив скоростей
-        let accels = new Array(t + 1).fill(a); // массив ускорений
-        let trace1 = {
-            x: time,
-            y: coords,
-            type: 'scatter',
-            name: 'Координата x материальной точки',
-            line: {color: 'red'}
-        };
-        let trace2 = {
-            x: time,
-            y: velos,
-            type: 'scatter',
-            name: 'Скорость v_x материальной точки',
-            line: {color: 'green'}
-        };
-        let trace3 = {
-            x: time,
-            y: accels,
-            type: 'scatter',
-            name: 'Ускорение a_x материальной точки',
-            line: {color: 'blue'}
-        };
-        let layout1 = {
-            title: 'Кинематика материальной точки, движущейся с постоянным ускорением a',
-            xaxis: {
-                title: 'Время, с'
-            },
-            yaxis: {
-                title: 'Значение координаты x, м'
-            }
-        };
-        let layout2 = {
-            title: 'Кинематика материальной точки, движущейся с постоянным ускорением a',
-            xaxis: {
-                title: 'Время, с'
-            },
-            yaxis: {
-                title: 'Значение скорости v, м/с'
-            }
-        };
-        let layout3 = {
-            title: 'Движение материальной точки, движущейся с постоянным ускорением a',
-            xaxis: {
-                title: 'Время, с'
-            },
-            yaxis: {
-                title: 'Значение ускорения a, м/с<sup>2<\sup>'
-            }
-        };
+    <div>
+        <label>Начальная позиция x<sub>0</sub>, м:</label>
+        <input type="range" min="-10" max="10" value="-10" class="slider" id="positionRange">
+        <span id="positionValue">0</span>
+    </div>
 
-        Plotly.newPlot('plot1', [trace1], layout1);
-        Plotly.newPlot('plot2', [trace2], layout2);
-        Plotly.newPlot('plot3', [trace3], layout3);
-    }
-</script>
+    <div>
+        <label>Начальная скорость v<sub>0</sub>, м/с:</label>
+        <input type="range" min="-10" max="10" value="10" class="slider" id="velocityRange">
+        <span id="velocityValue">0</span>
+    </div>
+
+    <div>
+        <label>Ускорение a, м/с<sup>2</sup>:</label>
+        <input type="range" min="-10" max="10" value="-2" class="slider" id="accelerationRange">
+        <span id="accelerationValue">0</span>
+    </div>
+
+    <div id="plot1"></div>
+    <div id="plot2"></div>
+    <div id="plot3"></div>
+
+    <script src="script/uniformlyAcceleratedMovement.js"></script> 
 </body>
+
 </html>
