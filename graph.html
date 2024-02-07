@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Графики движения</title>
+        <link rel="stylesheet" href="styles/graph.css">
+    </head>
+
+    <body>
+        <div>
+            <label for="functionInput">Введите функцию (x(t), v(t) или a(t)):</label>
+            <input type="text" id="functionInput" placeholder="Например, x(t)=t^2">
+        </div>
+
+        <div>
+            <button id="drawGraphsButton">Построить графики</button>
+            <button id="toggleThemeButton" class="theme-button">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+
+        <div>
+            <button id="showExamplesButton">Примеры функций</button>
+            <div id="exampleList" style="display: none;">
+                <p>Функция - x(t)=3t</p>
+                <p>Степень - t^2</p>
+                <p>Синус - sin(t)</p>
+                <p>Косинус - cos(t)</p>
+                <p>Тангенс - tan(t)</p>
+                <p>Логарифм по основанию e - log(t)</p>
+                <p>Логарифм по основанию a - log(t, a) или log(t,a)</p>
+                <p>Корень - sqrt(t)</p>
+                <p>Число π - pi</p>
+                <p>Число Эйлера - e</p>
+            </div>
+        </div>
+
+        <div id="loadingModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Выполняется расчет...</p>
+            </div>
+        </div>
+
+        <div class="graph-container">
+            <div class="main-graph">
+                <canvas id="mainGraph"></canvas>
+            </div>
+            <div class="side-graphs">
+                <canvas id="sideGraph1"></canvas>
+                <canvas id="sideGraph2"></canvas>
+            </div>
+        </div>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.4.4/math.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/nerdamer/all.min.js"></script>
+
+        <script src="script/graph.js"></script>
+
+    </body>
+</html>

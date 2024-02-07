@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/NISO.css">
+    <title>Стасенко Евгений Алексеевич & Шульган Роман Васильевич</title>
+</head>
+
+<body onload="init()">
+    <div class="window">
+        <p id="result">...</p>
+        <input type="number" id="latitudeInput" step="1" placeholder="Введите широту" />
+        <button onclick="calculateGravity()">Рассчитать ускорение свободного падения</button>
+    </div>
+
+    <div class="btns_left">
+        <button onclick="zoomIn()">+</button>
+        <button onclick="zoomOut()">-</button>
+    </div>
+
+    <div class="btns_right">
+        <button onclick="rotateTop()">↑</button>
+        <button onclick="rotateBottom()">↓</button>
+        <button onclick="rotateLeft()">←</button>
+        <button onclick="rotateRight()">→</button>
+    </div>
+
+    <div id="map"></div>
+    </div>
+
+    <script src="https://www.webglearth.com/v2/api.js"></script>
+    <script src="script/NISO1.js"></script>
+</body>
+
+</html>

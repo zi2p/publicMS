@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ускорение, скорость и координата</title>
+    <link rel="stylesheet" href="styles/graphCalculator.css">
+</head>
+
+<body onload="init()">
+
+    <p>x^a<br>sin(x)<br>cos(x)<br>tan(x)<br>sqrt(x)<br>log(x)<br>e<br>pi<br></p>
+
+    <div class="container">
+        <label for="input_coords">Введите x(t) функцию (перемещение)</label>
+        <input type="text" id="input_coords" placeholder="sin(x)" oninput="isActiveInputCoords()">
+    </div>
+
+    <div class="container">
+        <label for="input_velocity">Введите v(t) функцию (скорость)</label>
+        <input type="text" id="input_velocity" placeholder="sqrt(x) + 3pi" oninput="isActiveInputVelocity()">
+    </div>
+
+    <div class="container">
+        <label for="input_acceleration">Введите a(t) функцию (ускорение)</label>
+        <input type="text" id="input_acceleration" placeholder="x^2 + 10" oninput="isActiveInputAcceleration()">
+    </div>
+
+
+    <div class="container">
+        <button class="btn_yellow" onclick="getData()">Рассчитать</button>
+    </div>
+
+    <div class="container">
+        <button class="btn_white" onclick="clearAll()">Сбросить</button>
+    </div>
+
+
+    <div class="wrap">
+        <canvas id="coords_canvas"></canvas>
+        <canvas id="velocity_canvas"></canvas>
+        <canvas id="acceleration_canvas"></canvas>
+    </div>
+
+    <script src="script/chart.js"></script>
+    <script src="script/nerdamer.js"></script>
+    <script src="script/math.js"></script>
+    <script src="script/graphCalculator.js"></script>
+</body>
+
+</html>

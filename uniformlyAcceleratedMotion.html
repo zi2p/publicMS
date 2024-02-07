@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Равноускоренное движение</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="styles/index.css">
 </head>
 <body>
 <div>
@@ -30,88 +31,6 @@
 
 <div id="plot"></div>
 
-<script>
-    let timeSlider = document.getElementById("timeRange");
-    let timeOutput = document.getElementById("timeValue");
-    timeOutput.innerHTML = timeSlider.value;
-
-    timeSlider.oninput = function() {
-        timeOutput.innerHTML = this.value;
-        updatePlot();
-    }
-
-    let positionSlider = document.getElementById("positionRange");
-    let positionOutput = document.getElementById("positionValue");
-    positionOutput.innerHTML = positionSlider.value;
-
-    positionSlider.oninput = function() {
-        positionOutput.innerHTML = this.value;
-        updatePlot();
-    }
-
-    let velocitySlider = document.getElementById("velocityRange");
-    let velocityOutput = document.getElementById("velocityValue");
-    velocityOutput.innerHTML = velocitySlider.value;
-
-    velocitySlider.oninput = function() {
-        velocityOutput.innerHTML = this.value;
-        updatePlot();
-    }
-
-    let accelerationSlider = document.getElementById("accelerationRange");
-    let accelerationOutput = document.getElementById("accelerationValue");
-    accelerationOutput.innerHTML = accelerationSlider.value;
-
-    accelerationSlider.oninput = function() {
-        accelerationOutput.innerHTML = this.value;
-        updatePlot();
-    }
-    updatePlot();
-    function updatePlot() {
-        let t = parseInt(timeSlider.value);
-        let x0 = parseInt(positionSlider.value);
-        let v0 = parseInt(velocitySlider.value);
-        let a = parseInt(accelerationSlider.value);
-
-        let time = Array.from({ length: t + 1 }, (_, i) => i); // массив времени от 0 до t
-        let coords = time.map((ti) => x0 + v0 * ti + 0.5 * a * ti ** 2); // массив координат
-
-        let velos = time.map((ti) => v0 + a * ti); // массив скоростей
-        let accels = new Array(t + 1).fill(a); // массив ускорений
-
-        let trace1 = {
-            x: time,
-            y: coords,
-            type: 'scatter',
-            name: 'Координата x материальной точки'
-        };
-
-        let trace2 = {
-            x: time,
-            y: velos,
-            type: 'scatter',
-            name: 'Скорость v_x материальной точки'
-        };
-
-        let trace3 = {
-            x: time,
-            y: accels,
-            type: 'scatter',
-            name: 'Ускорение a_x материальной точки'
-        };
-
-        let layout = {
-            title: 'Кинематика материальной точки, движущейся с постоянным ускорением a_0',
-            xaxis: {
-                title: 'Время, с'
-            },
-            yaxis: {
-                title: 'Значение'
-            }
-        };
-
-        Plotly.newPlot('plot', [trace1, trace2, trace3], layout);
-    }
-</script>
+<script src="script/uniformlyAcceleratedMotion.js"></script> 
 </body>
 </html>
