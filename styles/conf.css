@@ -1,0 +1,27 @@
+body {
+    font-family: 'Roboto Slab';
+    text-align: center;
+    margin: 20px;
+}
+
+input {
+    padding: 5px;
+    margin-bottom: 15px;
+}
+
+button {
+    padding: 10px;
+    background-color: #69A1CA;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#configButtonContainer {
+    margin-bottom: 10px; /* Отступ снизу */
+}
+
+#configForm {
+    display: none;
+}

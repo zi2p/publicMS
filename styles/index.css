@@ -39,7 +39,8 @@ button {
 
 body {
     margin: 5px 0 5px 5px;
-    font-family: "Comic Sans MS", sans-serif;
+    /* font-family: "Comic Sans MS", sans-serif; */
+    font-family: 'Roboto Slab';
     color: #000;
     background-color: #fff;
    }
@@ -108,7 +109,7 @@ body {
     border-radius: 8px;
     cursor: pointer;
     }
-  
+ 
   .lable {
     width: 150px;
     position: sticky;

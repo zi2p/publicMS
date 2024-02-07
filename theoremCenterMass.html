@@ -1,0 +1,26 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bouncing Balls - Simulation</title>
+    <link rel="stylesheet" href="styles/conf.css">
+</head>
+<body>
+<h2>Simulation</h2>
+<div id="configButtonContainer">
+    <button type="button" onclick="toggleForm()">Configurate</button>
+</div>
+<form id="configForm">
+    <label for="ballCount">Number of Balls:</label>
+    <input type="number" id="ballCount" name="ballCount" min="1" value="3" max="50" required>
+    <button type="button" onclick="generateRandomParameters()">Generate Random Parameters</button>
+    <button type="button" onclick="startSimulation()">Start Simulation</button>
+    <div id="ballParameters"></div>
+</form>
+<canvas id="canvas" width="800" height="550"></canvas>
+<div id="info" align="center"></div>
+
+<script src="script/configuration.js"></script>
+<script src="script/simulation.js"></script>
+</body>
+</html>
