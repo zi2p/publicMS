@@ -38,12 +38,14 @@ function calculateGravity() {
 }
 
 function calculateGravityAtLatitude(latitude) {
-    const g0 = 9.78; // Ускорение свободного падения на экваторе
-    const omegaSquared = 7.2921159e-5 ** 2; // Квадрат угловой скорости вращения Земли
-    const sinSquared = Math.sin(latitude * (Math.PI / 180)) ** 2; // Квадрат 
-    const eSquared = 0.00669438 // Квадрат эксцентриситета Земли
-
-    return g0 * (1 - omegaSquared * sinSquared) / Math.sqrt(1 - eSquared * sinSquared);
+    //const g0 = 9.78; // Ускорение свободного падения на экваторе
+    //const omegaSquared = 7.2921159e-5 ** 2; // Квадрат угловой скорости вращения Земли
+    //const sinSquared = Math.sin(latitude * (Math.PI / 180)) ** 2; // Квадрат 
+    //const eSquared = 0.00669438 // Квадрат эксцентриситета Земли
+    const g0 = 9.78;
+    const sin1 = 0.005302;
+    const sin2 = 0.000006;
+    return g0 * (1 + sin1 * Math.sin(latitude * (Math.PI / 180))**2 - sin2 * Math.sin(2 * latitude * (Math.PI / 180))**2);
 }
 
 function zoomIn() {
