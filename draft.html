@@ -3,111 +3,91 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mathematical Pendulum</title>
+<title>Математический маятник</title>
 <style>
-    canvas {
-        border: 1px solid black;
-        background-color: #F0F0F0;
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+    }
+
+    #pendulum {
+        width: 2px;
+        height: 200px;
+        background-color: #69A1CA;
+        position: absolute;
+        top: 50px;
+        left: 50%;
+        transform-origin: top;
+    }
+
+    #anchor {
+        width: 10px;
+        height: 10px;
+        background-color: #CA6969;
+        border-radius: 50%;
+        position: absolute;
+        top: 40px;
+        left: 50%;
+        transform: translateX(-50%);
     }
 </style>
 </head>
 <body>
-<canvas id="canvas" width="800" height="600"></canvas>
-<div>
-    <label for="mass">Mass:</label>
-    <input type="range" id="mass" min="1" max="10" value="5">
-    <label for="length">Length:</label>
-    <input type="range" id="length" min="100" max="300" value="200">
-    <label for="friction">Friction:</label>
-    <input type="range" id="friction" min="0" max="0.1" step="0.01" value="0">
-    <button id="start">Start Timer</button>
-    <p id="period"></p>
-</div>
+<div id="anchor"></div>
+<div id="pendulum"></div>
+
 <script>
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
+    const anchor = document.getElementById('anchor');
+    const pendulum = document.getElementById('pendulum');
 
-    const pivotX = canvas.width / 2;
-    const pivotY = 100;
-    let angle = Math.PI / 4; // initial angle
-    let angularVelocity = 0.05;
-    let timerId;
-    let startTime;
+    let angle = Math.PI / 4; // начальный угол
+    let angularVelocity = 0; // начальная угловая скорость
+    let length = 200; // длина нити
+    let mass = 1; // масса маятника
+    let friction = 0.1; // коэффициент трения
+    let acceleration = 9.81; // ускорение свободного падения
 
-    const massSlider = document.getElementById('mass');
-    const lengthSlider = document.getElementById('length');
-    const frictionSlider = document.getElementById('friction');
-    const startButton = document.getElementById('start');
-    const periodDisplay = document.getElementById('period');
-
-    let mass = parseFloat(massSlider.value);
-    let length = parseFloat(lengthSlider.value);
-    let friction = parseFloat(frictionSlider.value);
-
-    let mouseX = pivotX;
-    let mouseY = pivotY;
-
-    massSlider.addEventListener('input', () => {
-        mass = parseFloat(massSlider.value);
-    });
-
-    lengthSlider.addEventListener('input', () => {
-        length = parseFloat(lengthSlider.value);
-    });
-
-    frictionSlider.addEventListener('input', () => {
-        friction = parseFloat(frictionSlider.value);
-    });
-
-    startButton.addEventListener('click', () => {
-        if (startButton.textContent === 'Start Timer') {
-            startButton.textContent = 'Stop Timer';
-            startTime = Date.now();
-            timerId = setInterval(() => {
-                const period = (Date.now() - startTime) / 1000;
-                periodDisplay.textContent = Period: ${period.toFixed(2)} seconds;
-            }, 10);
-        } else {
-            startButton.textContent = 'Start Timer';
-            clearInterval(timerId);
-        }
-    });
-
-    canvas.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX - canvas.getBoundingClientRect().left;
-        mouseY = e.clientY - canvas.getBoundingClientRect().top;
-    });
-
-    function drawPendulum() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        const dx = mouseX - pivotX;
-        const dy = mouseY - pivotY;
-        angle = Math.atan2(dy, dx);
-
-        const ballX = pivotX + length * Math.sin(angle);
-        const ballY = pivotY + length * Math.cos(angle);
-
-        ctx.beginPath();
-        ctx.moveTo(pivotX, pivotY);
-        ctx.lineTo(ballX, ballY);
-        ctx.strokeStyle = '#69A1CA'; // blue color
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.arc(ballX, ballY, 20, 0, Math.PI * 2);
-        ctx.fillStyle = '#CA6969'; // red color
-        ctx.fill();
-
-        const gravity = 9.81; // acceleration due to gravity
-        const acceleration = (-gravity / length) * Math.sin(angle) - friction * angularVelocity;
-        angularVelocity += acceleration;
-        angle += angularVelocity;
-
-        requestAnimationFrame(drawPendulum);
+    function updatePendulum() {
+        let x = length * Math.sin(angle);
+        let y = length * Math.cos(angle);
+        
+        pendulum.style.transform = translate(${x}px, ${y}px) rotate(${angle}rad);
     }
 
-    drawPendulum();
+    function calculatePeriod() {
+        let period = 2 * Math.PI * Math.sqrt(length / acceleration);
+        console.log('Период колебаний:', period.toFixed(2), 'сек');
+    }
+
+    function update() {
+        let gravityTorque = -mass * acceleration * length * Math.sin(angle);
+        let dampingTorque = -friction * angularVelocity;
+
+        let angularAcceleration = (gravityTorque + dampingTorque) / (mass * length * length);
+        angularVelocity += angularAcceleration;
+        angle += angularVelocity;
+
+        updatePendulum();
+    }
+
+    setInterval(update, 16); // обновление каждые 16 мс
+
+    window.addEventListener('mousemove', (event) => {
+        let rect = anchor.getBoundingClientRect();
+        let centerX = rect.left + rect.width / 2;
+        let centerY = rect.top + rect.height / 2;
+
+        let deltaX = event.clientX - centerX;
+        let deltaY = event.clientY - centerY;
+
+        angle = Math.atan2(deltaX, deltaY);
+    });
+
+    calculatePeriod();
 </script>
 </body>
 </html>
