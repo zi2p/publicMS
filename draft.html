@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mathematical Pendulum</title>
+<style>
+    canvas {
+        border: 1px solid black;
+    }
+</style>
+</head>
+<body>
+<canvas id="canvas" width="800" height="600"></canvas>
+<script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    const pivotX = canvas.width / 2;
+    const pivotY = 100;
+    let angle = Math.PI / 4; // initial angle
+    const length = 200;
+    const gravity = 0.2;
+
+    function drawPendulum() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const ballX = pivotX + length * Math.sin(angle);
+        const ballY = pivotY + length * Math.cos(angle);
+
+        ctx.beginPath();
+        ctx.moveTo(pivotX, pivotY);
+        ctx.lineTo(ballX, ballY);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(ballX, ballY, 20, 0, Math.PI * 2);
+        ctx.fill();
+
+        angle += 0.05; // angular velocity
+        angle %= Math.PI * 2;
+
+        requestAnimationFrame(drawPendulum);
+    }
+
+    drawPendulum();
+</script>
+</body>
+</html>
