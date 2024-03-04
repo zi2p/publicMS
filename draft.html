@@ -44,6 +44,9 @@
     let length = parseFloat(lengthSlider.value);
     let friction = parseFloat(frictionSlider.value);
 
+    let mouseX = pivotX;
+    let mouseY = pivotY;
+
     massSlider.addEventListener('input', () => {
         mass = parseFloat(massSlider.value);
     });
@@ -70,8 +73,17 @@
         }
     });
 
+    canvas.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX - canvas.getBoundingClientRect().left;
+        mouseY = e.clientY - canvas.getBoundingClientRect().top;
+    });
+
     function drawPendulum() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const dx = mouseX - pivotX;
+        const dy = mouseY - pivotY;
+        angle = Math.atan2(dy, dx);
 
         const ballX = pivotX + length * Math.sin(angle);
         const ballY = pivotY + length * Math.cos(angle);
@@ -87,7 +99,7 @@
         ctx.fillStyle = '#CA6969'; // red color
         ctx.fill();
 
-        const gravity = 0.2;
+        const gravity = 9.81; // acceleration due to gravity
         const acceleration = (-gravity / length) * Math.sin(angle) - friction * angularVelocity;
         angularVelocity += acceleration;
         angle += angularVelocity;
