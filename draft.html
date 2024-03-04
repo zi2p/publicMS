@@ -13,19 +13,17 @@
 <body>
 <canvas id="canvas" width="800" height="600"></canvas>
 <div>
-    <label for="mass">Масса маятника:</label>
-    <input type="range" id="mass" min="1" max="10" value="5"><br>
-    <label for="length">Длина нити:</label>
-    <input type="range" id="length" min="100" max="300" value="200"><br>
-    <label for="friction">Трение:</label>
-    <input type="range" id="friction" min="0" max="0.1" step="0.01" value="0"><br>
+    <label for="angle">Начальное положение (градусы):</label>
+    <input type="number" id="angle" min="-180" max="180" value="45"><br>
+    <button id="start">Запустить</button><br>
+    <p id="period">Период колебаний: </p>
 </div>
 <script>
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
     const pivotX = canvas.width / 2;
     const pivotY = 100;
-    let angle = Math.PI / 4; // начальный угол
+    let angle = Math.PI / 4; // начальный угол в радианах
     let angularVelocity = 0;
     let acceleration = 0;
     const gravity = 9.81; // ускорение свободного падения
@@ -33,23 +31,27 @@
     let length = 200;
     let friction = 0;
 
-    document.getElementById('mass').addEventListener('input', function() {
-        mass = parseFloat(this.value);
-    });
+    const angleInput = document.getElementById('angle');
+    const startButton = document.getElementById('start');
+    const periodDisplay = document.getElementById('period');
 
-    document.getElementById('length').addEventListener('input', function() {
-        length = parseFloat(this.value);
-    });
-
-    document.getElementById('friction').addEventListener('input', function() {
-        friction = parseFloat(this.value);
-    });
-
-    canvas.addEventListener('mousemove', function(event) {
-        angle = Math.atan2(event.clientY - pivotY, event.clientX - pivotX);
+    angleInput.addEventListener('input', function() {
+        angle = parseFloat(this.value) * Math.PI / 180; // переводим градусы в радианы
         angularVelocity = 0;
         acceleration = 0;
     });
+
+    startButton.addEventListener('click', function() {
+        angularVelocity = 0;
+        acceleration = 0;
+        calculatePeriod();
+        drawPendulum();
+    });
+
+    function calculatePeriod() {
+        const period = 2 * Math.PI * Math.sqrt(length / gravity);
+        periodDisplay.textContent = 'Период колебаний: ' + period.toFixed(2) + ' сек';
+    }
 
     function drawPendulum() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -71,10 +73,11 @@
         ctx.fillStyle = '#69A1CA'; // синий цвет
         ctx.fill();
 
-        requestAnimationFrame(drawPendulum);
+        if (angularVelocity !== 0) {
+            requestAnimationFrame(drawPendulum);
+        }
     }
 
-    drawPendulum();
 </script>
 </body>
 </html>
