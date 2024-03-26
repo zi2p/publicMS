@@ -13,22 +13,9 @@
 			<label for="V">Скорость системы отсчета V (м/с):</label>
 			<input type="number" id="V" placeholder="Введите скорость системы отсчета" style="color: #343a40;">
 		</div>
-	</div>
-	<div class="container col-2">
 		<div class="input-field">
-			<label for="v_prime">Скорость материальной точки v' (м/с):</label>
-			<input type="number" id="v_prime" placeholder="Введите скорость материальной точки в системе отсчета" style="color: #343a40;">
-		</div>
-		<div class="input-field">
-			<label for="x_prime">Начальная координата материальной точки x<sub>0</sub>' (м):</label>
-			<input type="number" id="x_prime" placeholder="Введите начальную координату материальной точки в системе отсчета" style="color: #343a40;">
-		</div>
-		<div class="input-field">
-			<label for="t_prime">Время t (с):</label> <!-- Добавляем поле для ввода времени -->
-			<input type="number" id="t_prime" placeholder="Введите время" style="color: #343a40;">
-		</div>
-		<div class="button-field">
-			<button onclick="calculate()">Рассчитать v и x</button>
+			<label for="t">Момент времени t (с):</label> <!-- Добавляем поле для ввода времени -->
+			<input type="number" id="t" placeholder="Введите t" style="color: #343a40;">
 		</div>
 	</div>
 	<div class="container col-2">
@@ -40,12 +27,21 @@
 			<label for="x">Координата материальной точки x (м):</label>
 			<input type="number" id="x" placeholder="Введите координату материальной точки" style="color: #343a40;">
 		</div>
-		<div class="input-field">
-			<label for="t">Время t (с):</label> <!-- Добавляем поле для ввода времени -->
-			<input type="number" id="t" placeholder="Введите время" style="color: #343a40;">
-		</div>
 		<div class="button-field">
 			<button onclick="calculatePrime()">Рассчитать v' и x'</button>
+		</div>
+	</div>
+	<div class="container col-2">
+		<div class="input-field">
+			<label for="v_prime">Скорость материальной точки v' (м/с):</label>
+			<input type="number" id="v_prime" placeholder="Введите скорость материальной точки в системе отсчета" style="color: #343a40;">
+		</div>
+		<div class="input-field">
+			<label for="x_prime">Начальная координата материальной точки x<sub>0</sub>' (м):</label>
+			<input type="number" id="x_prime" placeholder="Введите начальную координату материальной точки в системе отсчета" style="color: #343a40;">
+		</div>
+		<div class="button-field">
+			<button onclick="calculate()">Рассчитать v и x</button>
 		</div>
 	</div>
 </div>

@@ -4,7 +4,7 @@ function calculate() {
     const V = parseFloat(document.getElementById('V').value);
     const v_prime = parseFloat(document.getElementById('v_prime').value);
     const x_prime = parseFloat(document.getElementById('x_prime').value);
-    const t_prime = parseFloat(document.getElementById('t_prime').value);
+    const t_prime = parseFloat(document.getElementById('t').value);
 
     if (isNaN(V)) {
         alert("Пожалуйста, введите значение для скорости системы отсчета V (м/с).");
@@ -36,6 +36,8 @@ function calculate() {
     const t = t_prime;
 
     document.getElementById('output').innerHTML = 'Скорость v: ' + v.toFixed(2) + ' м/с, Координата x: ' + x.toFixed(2) + ' м, Время t: ' + t.toFixed(2) + ' с';
+	document.getElementById('v').value = v;
+	document.getElementById('x').value = x;
 }
 
 function calculatePrime() {
@@ -74,4 +76,6 @@ function calculatePrime() {
     const t_prime = t;
 
     document.getElementById('output').innerHTML = "Скорость v': " + v_prime.toFixed(2) + " м/с, Координата x<sub>0</sub>': " + x_prime.toFixed(2) + " м, Время t: " + t_prime.toFixed(2) + " с";
+	document.getElementById('v_prime').value = v_prime;
+	document.getElementById('x_prime').value = x_prime;
 }
