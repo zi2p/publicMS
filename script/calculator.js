@@ -39,7 +39,7 @@ function calculate() {
 }
 
 function calculatePrime() {
-    const V = parseFloat(document.getElementById('V2').value);
+    const V = parseFloat(document.getElementById('V').value);
     const v = parseFloat(document.getElementById('v').value);
     const x = parseFloat(document.getElementById('x').value);
     const t = parseFloat(document.getElementById('t').value);
