@@ -68,8 +68,7 @@ h1, h2 {
 }
 
 .full-width{
-	max-width:80%;
-	min-width:60%;
+	width:90%;
 	margin:5%;
 }
 
@@ -81,12 +80,4 @@ h1, h2 {
 
 .bg-white {
 	background-color: white;
-}
-
-
-@media only screen and (max-width: 768px) {
-	.full-width{
-		max-width:90%;
-		min-width:90%;
-	}
 }
