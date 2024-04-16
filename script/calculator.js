@@ -88,3 +88,4 @@ function yesnoCheck() {
         document.getElementById('straight').style.display = 'none';
         document.getElementById('reverse').style.display = 'block';
     }
+}
