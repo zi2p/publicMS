@@ -79,3 +79,12 @@ function calculatePrime() {
 	document.getElementById('v_prime').value = v_prime;
 	document.getElementById('x_prime').value = x_prime;
 }
+
+function yesnoCheck() {
+    if (document.getElementById('yesCheck').checked) {
+        document.getElementById('straight').style.display = 'block';
+        document.getElementById('reverse').style.display = 'none';
+    } else {
+        document.getElementById('straight').style.display = 'none';
+        document.getElementById('reverse').style.display = 'block';
+    }

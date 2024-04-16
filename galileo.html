@@ -18,7 +18,11 @@
 			<input type="number" id="t" placeholder="Введите t" style="color: #343a40;">
 		</div>
 	</div>
-	<div class="container col-2">
+	<div class="container flex full-width">
+		<div class="container flex col-2"><input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="yesCheck" checked="checked"/><p class="mg-w5">Прямое преобразование</p></div>
+		<div class="container flex col-2"><input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="noCheck"/><p class="mg-w5">Обратное</p></div>
+	</div>
+	<div id="straight" class="container full-width">
 		<div class="input-field">
 			<label for="v">Скорость материальной точки v (м/с):</label>
 			<input type="number" id="v" placeholder="Введите скорость материальной точки" style="color: #343a40;">
@@ -31,7 +35,7 @@
 			<button onclick="calculatePrime()">Рассчитать v' и x'</button>
 		</div>
 	</div>
-	<div class="container col-2">
+	<div id="reverse" class="container full-width" style="display:none">
 		<div class="input-field">
 			<label for="v_prime">Скорость материальной точки v' (м/с):</label>
 			<input type="number" id="v_prime" placeholder="Введите скорость материальной точки в системе отсчета" style="color: #343a40;">
