@@ -19,8 +19,8 @@
 		</div>
 	</div>
 	<div class="container flex full-width">
-		<div class="container flex col-2"><input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="yesCheck" checked="checked"/><p class="mg-w5">Прямое преобразование</p></div>
-		<div class="container flex col-2"><input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="noCheck"/><p class="mg-w5">Обратное</p></div>
+		<div class="container flex col-2"><input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="yesCheck" checked="checked"/><label for="yesCheck" class="mg-w5">Прямое преобразование</p></div>
+		<div class="container flex col-2"><input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="noCheck"/><label for="noCheck" class="mg-w5">Обратное</p></div>
 	</div>
 	<div id="straight" class="container full-width">
 		<div class="input-field">
@@ -38,11 +38,11 @@
 	<div id="reverse" class="container full-width" style="display:none">
 		<div class="input-field">
 			<label for="v_prime">Скорость материальной точки v' (м/с):</label>
-			<input type="number" id="v_prime" placeholder="Введите скорость материальной точки в системе отсчета" style="color: #343a40;">
+			<input type="number" id="v_prime" placeholder="Введите скорость материальной точки" style="color: #343a40;">
 		</div>
 		<div class="input-field">
-			<label for="x_prime">Начальная координата материальной точки x<sub>0</sub>' (м):</label>
-			<input type="number" id="x_prime" placeholder="Введите начальную координату материальной точки в системе отсчета" style="color: #343a40;">
+			<label for="x_prime">Координата материальной точки x<sub>0</sub>' (м):</label>
+			<input type="number" id="x_prime" placeholder="Введите координату материальной точки" style="color: #343a40;">
 		</div>
 		<div class="button-field">
 			<button onclick="calculate()">Рассчитать v и x</button>
