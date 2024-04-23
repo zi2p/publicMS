@@ -4,27 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Переход от декартовых к сферическим координатам</title>
-    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 
 <body>
     <h1>Переход от декартовых к сферическим координатам</h1>
     
-    <div class="container">
-        <div class="cart-coords">
-            <h2>Декартовы координаты</h2>
-            <p>x = <input type="number" id="x"></p>
-            <p>y = <input type="number" id="y"></p>
-            <p>z = <input type="number" id="z"></p>
+    <div class="container flex full-width">
+        <div class="container flex full-width">
+            <h2 class="col-2">Декартовы координаты</h2>
+            <h2 class="col-2">Сферические координаты</h2>
         </div>
-        <div class="spherical-coords">
-            <h2>Сферические координаты</h2>
-            <p>r = <span id="r"></span></p>
-            <p>&theta; = <span id="theta"></span></p>
-            <p>&phi; = <span id="phi"></span></p>
+        <div class="container flex full-width">
+			<div class="input-field flex">
+            <label class="mg-w5 col-2">x = </label><input class="small" type="number" id="x">
+			</div>
+            <label class="col-2">r = <span id="r"></span></label>
+        </div>
+        <div class="container flex full-width">
+			<div class="input-field flex">
+            <label class="mg-w5 col-2">y = </label><input class="small" type="number" id="y">
+			</div>
+            <label class="col-2">&theta; = <span id="theta"></span></label>
+        </div>
+        <div class="container flex full-width">
+			<div class="input-field flex">
+            <label class="mg-w5 col-2">z = </label><input class="small" type="number" id="z">
+			</div>
+            <label class="col-2">&phi; = <span id="phi"></span></label>
         </div>
     </div>
-    <div class="container">
+    <div class="container button-field">
         <button id="convert-btn">Перевести</button>
     </div>
     

@@ -85,3 +85,9 @@ h1, h2 {
 .mg-w5 {
 	margin: 1% 0% 0% 5%;
 }
+
+input.small {
+	width: auto;
+	padding: 2px;
+	margin-left: 2%;
+}
