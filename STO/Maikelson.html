@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html class="ui-mobile translated-ltr"><head><base href="https://galileoandeinstein.phys.virginia.edu/more_stuff/Applets/MichelsonMorley/michelsonmorley.html">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Эксперимент Майкельсона-Морли</title>
+  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
+  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" href="bootstrap-3.3.5-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles/michelsonmorley.css">
+  <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://www.gstatic.com/_/translate_http/_/ss/k=translate_http.tr.26tY-h6gH9w.L.W.O/am=wA/d=0/rs=AN8SPfpPTNr3cQN8QhzqvQYsNrDu3oHhow/m=el_main_css"></head>
+<body id="mm" class="ui-mobile-viewport ui-overlay-a"><div data-role="page" data-url="/more_stuff/Applets/MichelsonMorley/michelsonmorley.html" tabindex="0" class="ui-page ui-page-theme-a ui-page-active" style="min-height: 738px;">
+  <header>
+<!--    <div id="header" data-role="header" role="banner" class="ui-header ui-bar-inherit">-->
+<!--      <h1 class="ui-title" role="heading" aria-level="1">-->
+<!--        <a id="home" class="btn ui-link" href="//galileoandeinstein.phys.virginia.edu/more_stuff/Applets/home.html" data-ajax="false">-->
+<!--          <span class="glyphicon glyphicon-home" aria-hidden="true"></span>-->
+<!--        </a>-->
+<!--        <b><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Эксперимент Майкельсона-Морли</font></font></b>-->
+<!--      </h1>-->
+<!--    </div>-->
+  </header>
+
+  <!-- <hr> -->
+
+  <div id="canvases">
+    <canvas id="static_canvas" width="571" height="571" style="transform: rotate(0rad); cursor: grab;"></canvas>
+    <canvas id="aether_canvas" style="cursor: grab;"></canvas>
+    <canvas id="canvas" width="571" height="571" style="cursor: grab;"></canvas>
+  </div>
+
+  <div id="sliderdiv" style="top: 571.95px;">
+    <div id="slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 45%;"></span></div>
+    <div><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+      Скорость эфира
+    </font></font></div>
+  </div>
+  <div id="buttondiv" style="top: 571.95px;">
+    <button data-inline="true" id="play-button" type="button" class=" ui-btn ui-btn-inline ui-shadow ui-corner-all">
+      <span class="glyphicon glyphicon-pause" aria-hidden="true">Начать</span>
+    </button>
+    <button data-inline="true" id="reset" type="button" class=" ui-btn ui-btn-inline ui-shadow ui-corner-all">
+      <span class="glyphicon glyphicon-refresh" aria-hidden="true">Заново</span>
+    </button>
+  </div>
+
+<!--  <div id="explanation" style="top: 571.95px;">-->
+<!--&lt;!&ndash;    <h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Эксперимент Майкельсона-Морли</font></font></h3>&ndash;&gt;-->
+<!--&lt;!&ndash;    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Как только стало ясно, что свет — это волна, возник очевидный вопрос: что такое волна?</font></font></p>&ndash;&gt;-->
+<!--&lt;!&ndash;    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Все знали, что звуковые волны — это волны сжатия воздуха, и в ветреный день звук разносится ветром. Предположительно во Вселенной существовал какой-то загадочный фоновый материал, названный им эфиром, который играл ту же роль для света. И Земля, должно быть, движется через эфир, так что это увеличит скорость света в направлении ветра.</font></font></p>&ndash;&gt;-->
+<!--&lt;!&ndash;    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Этот эксперимент предназначен для обнаружения движения Земли путем организации гонки между вспышкой света, проходящей через поток и обратно, и одной вспышкой света, идущей вверх по течению, а затем вниз по течению. Аппарат можно вращать (прикасаясь к апплету), чтобы переключать два круга, что должно изменить того, кто победит. Попробуйте это с различными скоростями «эфирного ветра». (Примечание: ожидаемое значение скорости эфирного ветра, скажем, скорости Земли на орбите, составляет всего одну десятитысячную скорости света, и эти ребята легко определяют это, но, очевидно, мы не можем показать здесь — мы просто иллюстрируем идея! И мы пренебрегаем (небольшим) изменением направления света, которое может вызвать предполагаемый ветер.)</font></font></p>&ndash;&gt;-->
+<!--&lt;!&ndash;    <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Полное объяснение можно найти в моей лекции по современной физике </font></font><a href="//galileo.phys.virginia.edu/classes/252/michelson.html#michmor" class="ui-link"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">здесь</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> .&ndash;&gt;-->
+
+<!--    </font></font></p></div>-->
+
+  <script src="include/utils.js"></script>
+  <script src="classes/circle.js"></script>
+  <script src="classes/ball.js"></script>
+  <script src="classes/light.js"></script>
+  <script src="classes/arrow.js"></script>
+  <script src="classes/line.js"></script>
+  <script src="classes/rectangle.js"></script>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+  <script>
+    jQuery.fn.uislider = jQuery.fn.slider;
+  </script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+  <!-- <script src="bootstrap-3.3.5-dist/js/bootstrap.min.js"></script> -->
+
+  <script src="scripts/mm_statics.js"></script>
+  <script src="scripts/michelsonmorley.js"></script>
+
+
+
+</div>
+<div id="goog-gt-tt" class="VIpgJd-yAWNEb-L7lbkb skiptranslate" style="border-radius: 12px;
+margin: 0 0 0 -23px; padding: 0; font-family: 'Google Sans', Arial, sans-serif;"
+     data-id="">
+  <div id="goog-gt-vt" class="VIpgJd-yAWNEb-hvhgNd">
+    <div class=" VIpgJd-yAWNEb-hvhgNd-l4eHX-i3jM8c">
+      <img src="https://fonts.gstatic.com/s/i/productlogos/translate/v14/24px.svg" width="24" height="24" alt="">
+    </div>
+   
+
+
+    <iframe name="votingFrame" frameborder="0"></iframe></div></div></div>
+<div class="ui-loader ui-corner-all ui-body-a ui-loader-default">
+  <span class="ui-icon-loading"></span><h1>
+  <font style="vertical-align: inherit;">
+    <font style="vertical-align: inherit;">
+      загрузка
+    </font></font></h1></div></body></html>
