@@ -28,12 +28,18 @@ function loadFromLocalStorage() {
 window.onload = loadFromLocalStorage;
 
 function calculate() {
-    var x1 = parseFloat(document.getElementById("x1").value);
-    var y1 = parseFloat(document.getElementById("y1").value);
-    var z1 = parseFloat(document.getElementById("z1").value);
-    var x2 = parseFloat(document.getElementById("x2").value);
-    var y2 = parseFloat(document.getElementById("y2").value);
-    var z2 = parseFloat(document.getElementById("z2").value);
+	var input = document.getElementById("x1").value
+    var x1 = input === '' ? 0 : parseFloat(input);
+	input = document.getElementById("y1").value
+    var y1 = input === '' ? 0 : parseFloat(input);
+	input = document.getElementById("z1").value
+    var z1 = input === '' ? 0 : parseFloat(input);
+	input = document.getElementById("x2").value
+    var x2 = input === '' ? 0 : parseFloat(input);
+	input = document.getElementById("y2").value
+    var y2 = input === '' ? 0 : parseFloat(input);
+	input = document.getElementById("z2").value
+    var z2 = input === '' ? 0 : parseFloat(input);
 
     function angle(v1, v2) {
         angle = Math.acos((v1[0]*v2[0] + v1[1]*v2[1] + v1[2]*v2[2]) / (Math.sqrt(v1[0]*v1[0] + v1[1]*v1[1] + v1[2]*v1[2]) * Math.sqrt(v2[0]*v2[0] + v2[1]*v2[1] + v2[2]*v2[2])));
