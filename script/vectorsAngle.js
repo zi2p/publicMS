@@ -129,7 +129,7 @@ function calculate() {
         document.getElementById("result").innerHTML = "Результат скалярного произведения: "+result+", угол между векторами: 0 градусов";
     } else {
         var resultAngle = angle(vec1, vec2).toFixed(2);
-        document.getElementById("result").innerHTML = "Результат скалярного произведения: "+result+", угол между векторами: " + resultAngle + " градусов";
+        document.getElementById("result").innerHTML = "Результат скалярного произведения: "+result+", угол между векторами: " + resultAngle + "°";
     }
 
     Plotly.newPlot('plot', data, layout);
