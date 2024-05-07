@@ -62,6 +62,18 @@ function calculate() {
         },
         name: 'Вектор 1'
     };
+	
+	var cone1 = {
+        type: 'cone',
+        colorscale: 'Blues',
+        showscale: false,
+        u: [vec1[0]/10],
+        v: [vec1[1]/10],
+        w: [vec1[2]/10],
+        x: [vec1[0]],
+        y: [vec1[1]],
+        z: [vec1[2]]
+    };
 
     var trace2 = {
         x: [0, vec2[0]],
@@ -74,6 +86,18 @@ function calculate() {
             width: 4
         },
         name: 'Вектор 2'
+    };
+	
+	var cone2 = {
+        type: 'cone',
+        colorscale: 'Reds',
+        showscale: false,
+        u: [vec2[0]/10],
+        v: [vec2[1]/10],
+        w: [vec2[2]/10],
+        x: [vec2[0]],
+        y: [vec2[1]],
+        z: [vec2[2]]
     };
 
     var layout = {
@@ -90,17 +114,22 @@ function calculate() {
         }
     };
 
-    var data = [trace1, trace2];
+    var data = [trace1, trace2, cone1, cone2];
 
     if (resultAngle) {
-        localStorage.setItem("resultAngle", resultAngle.toFixed(3));
+        localStorage.setItem("resultAngle", resultAngle.toFixed(2));
     }
 
+    if (result) {
+        localStorage.setItem("result", result.toFixed(2));
+    }
+	
+	var result = (vec1[0]*vec2[0]+vec1[1]*vec2[1]+vec1[2]*vec2[2]).toFixed(2);
     if (vec1[0] == vec2[0] && vec1[1] == vec2[1] && vec1[2] == vec2[2] || (x1 == 0 && y1 == 0 && z1 == 0 || x2 == 0 && y2 == 0 && z2 == 0)) {
-        document.getElementById("result").innerHTML = "Полученный угол равен: 0 градусов";
+        document.getElementById("result").innerHTML = "Результат скалярного произведения: "+result+", угол между векторами: 0 градусов";
     } else {
-        var resultAngle = angle(vec1, vec2).toFixed(3);
-        document.getElementById("result").innerHTML = "Полученный угол равен: " + resultAngle + " градусов";
+        var resultAngle = angle(vec1, vec2).toFixed(2);
+        document.getElementById("result").innerHTML = "Результат скалярного произведения: "+result+", угол между векторами: " + resultAngle + " градусов";
     }
 
     Plotly.newPlot('plot', data, layout);

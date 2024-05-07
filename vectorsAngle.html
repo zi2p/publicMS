@@ -1,31 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
     <title>Векторы. Скалярное произведение</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 
 <body>
-  
-    <div class="container">
-        <div class="cart-coords">
-            <h2>Выберите координаты первого вектора:</h2>
-            <p>x1 = <input type="text" id="x1"></p>
-            <p>y1 = <input type="text" id="y1"></p>
-            <p>z1 = <input type="text" id="z1"></p>
+    <h1>Скалярное произведение векторов</h1>
+    
+    <div class="container flex full-width">
+        <div class="container flex full-width">
+            <h2 class="col-2">Первый вектор</h2>
+            <h2 class="col-2">Второй вектор</h2>
         </div>
-        <div class="spherical-coords">
-            <h2>Выберите координаты второго вектора:</h2>
-            <p>x2 = <input type="text" id="x2"></p>
-            <p>y2 = <input type="text" id="y2"></p>
-            <p>z2 = <input type="text" id="z2"></p>
+        <div class="container flex full-width">
+			<div class="input-field col-2 flex small">
+            <label class="mg-w5">x1 = </label><input class="small" type="number" id="x1">
+			</div>
+			<div class="input-field col-2 flex small">
+            <label class="mg-w5">x2 = </label><input class="small" type="number" id="x2">
+			</div>
+        </div>
+        <div class="container flex full-width">
+			<div class="input-field col-2 flex small">
+            <label class="mg-w5">y1 = </label><input class="small" type="number" id="y1">
+			</div>
+			<div class="input-field col-2 flex small">
+            <label class="mg-w5">y2 = </label><input class="small" type="number" id="y2">
+			</div>
+        </div>
+        <div class="container flex full-width">
+			<div class="input-field col-2 flex small">
+            <label class="mg-w5">z1 = </label><input class="small" type="number" id="z1">
+			</div>
+			<div class="input-field col-2 flex small">
+            <label class="mg-w5">z2 = </label><input class="small" type="number" id="z2">
+			</div>
         </div>
     </div>
-
-    <div class="container">
+    <div class="container button-field">
         <button onclick="calculate()">Рассчитать</button>
     </div>
 
