@@ -22,6 +22,7 @@ label {
 	font-size: 1em;
 	color: #adb5bd;
 	height: 1em;
+	white-space: nowrap;
 }
 input[type="number"] {
 	width: 100%;
@@ -32,6 +33,17 @@ input[type="number"] {
 	font-size: 1em;
 	color: #343a40;
 	background-color: #f8f9fa;
+}
+input[type="text"] {
+	width: 100%;
+	padding: 10px;
+	box-sizing: border-box;
+	border-radius: 5px;
+	border: 2px solid #ccc;
+	font-size: 1em;
+	color: #343a40;
+	background-color: #f8f9fa;
+	margin-right: 4%;
 }
 button {
 	display: block;
@@ -58,12 +70,16 @@ h1, h2 {
 .flex{
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.flex.input-field{
+	flex-wrap:nowrap;
 }
 
 .col-2{
 	width:48%;
 	margin: 0 1%;
-	justify-content: center;
 }
 
 .col-2.input-field{
@@ -102,4 +118,17 @@ input.small {
 
 div.small {
 	max-height: 1.5rem
+}
+
+#result {
+	text-align:center;
+	font-weight:bold;
+	color:#3bd000;
+}
+
+#error {
+	text-align:center;
+	font-weight:bold;
+	font-style:italic;
+	color:#d80000;
 }

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Работа потенциальной силы</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.4.4/math.min.js"></script>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+    <h1>Работа потенциальной силы</h1>
+    
+    <div class="container flex full-width">
+        <div class="container flex col-2">
+            <h2 class="full-width">Начальная точка</h2>
+			<div class="input-field full-width flex small">
+            <label class="mg-w5">x = </label><input class="small" type="number" id="x1">
+			</div>
+			<div class="input-field full-width flex small">
+            <label class="mg-w5">y = </label><input class="small" type="number" id="y1">
+			</div>
+        </div>
+        <div class="container flex col-2">
+            <h2 class="full-width">Конечная точка</h2>
+			<div class="input-field full-width flex small">
+            <label class="mg-w5">x = </label><input class="small" type="number" id="x2">
+			</div>
+			<div class="input-field full-width flex small">
+            <label class="mg-w5">y = </label><input class="small" type="number" id="y2">
+			</div>
+        </div>
+			<div class="input-field flex small">
+            <label class="mg-w5">φ(x,y) = </label><input class="small" type="text" id="u">
+			</div>
+    </div>
+    <div class="container button-field">
+        <button onclick="calculate()">Рассчитать</button>
+    </div>
+
+    <p id="result"></p>
+    <p id="error"></p>
+    <div id="plot"></div>
+
+    <script src="script/potentialArbeit.js"></script> 
+</body>
+</html>
