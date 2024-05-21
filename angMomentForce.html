@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Момент сил</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+    <h1>Восстановление момента сил по моменту импульса</h1>
+    
+    <div class="container flex full-width">
+        <div class="container flex col-2">
+            <h2 class="full-width">Момент импульса</h2>
+			<div class="input-field full-width flex small">
+            <label class="mg-w5">L<sub>x</sub>(t)= </label><input class="small" type="text" id="Lx">
+			</div>
+			<div class="input-field full-width flex">
+            <label class="mg-w5">L<sub>y</sub>(t)= </label><input class="small" type="text" id="Ly">
+			</div>
+			<div class="input-field full-width flex">
+            <label class="mg-w5">L<sub>z</sub>(t)=</label><input class="small" type="text" id="Lz">
+			</div>
+        </div>
+        <div class="container flex col-2">
+            <h2 class="full-width">Момент силы</h2>
+			<div class="output-field full-width flex small">
+            <label class="full-width">M<sub>x</sub>= <span id="Mx"></span></label>
+			</div>
+			<div class="output-field full-width flex small">
+            <label class="full-width">M<sub>y</sub>= <span id="My"></span></label>
+			</div>
+			<div class="output-field full-width flex small">
+            <label class="full-width">M<sub>z</sub>= <span id="Mz"></span></label>
+			</div>
+        </div>
+			<div class="input-field flex small">
+            <label class="mg-w5">t=</label><input class="small" type="number" id="t">
+			</div>
+    </div>
+    <div class="container button-field">
+        <button id="convert-btn">Перевести</button>
+    </div>
+    <p id="error"></p>
+    
+    <script src="script/angMomentForce.js"></script> 
+</body>
+</html>
