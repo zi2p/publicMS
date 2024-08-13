@@ -7,9 +7,22 @@ let customLatitude = null;
 let customLongitude = null;
 let marker
 
-const map = WE.map('map', { zoom: zoom, dragging: true, scrollWheelZoom: true });
+let map; // Declare map in the outer scope
+
+(function() {
+    if (typeof map === 'undefined') {
+        // Initialize the map
+        map = WE.map('map', { zoom: zoom, dragging: true, scrollWheelZoom: true });
+        console.log("Map initialized:", map); // Log the map object
+    }
+})();
 
 function init() {
+	if (typeof map === 'undefined') {
+		// Declare and initialize 'map' if it is not already declared
+		map = WE.map('map', { zoom: zoom, dragging: true, scrollWheelZoom: true });
+	}
+	
     map.on("click", function (e) {
         customLatitude = e.latlng.lat.toFixed(5);
         customLongitude = e.latlng.lng.toFixed(5);

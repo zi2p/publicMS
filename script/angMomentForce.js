@@ -32,12 +32,16 @@ function calculate() {
 		var Mx = math.derivative(Lx, 't').evaluate({t: t});
 		var My = math.derivative(Ly, 't').evaluate({t: t});
 		var Mz = math.derivative(Lz, 't').evaluate({t: t});
-		
+		document.getElementById("Mx").textContent = Mx.toFixed(3);
+		document.getElementById("My").textContent = My.toFixed(3);
+		document.getElementById("Mz").textContent = Mz.toFixed(3);
         document.getElementById("error").textContent = '';
 	} catch (e) {
 		console.log(e);
 		console.log(e.message);
-		document.getElementById("result").textContent = '';
+		document.getElementById("Mx").textContent = '';
+		document.getElementById("My").textContent = '';
+		document.getElementById("Mz").textContent = '';
 		document.getElementById("error").textContent = "Что-то пошло не так";
     }
 		

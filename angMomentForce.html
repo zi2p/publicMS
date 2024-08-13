@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Момент сил</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.4.4/math.min.js"></script>
     <link rel="stylesheet" href="styles/style.css">
 </head>
 
 <body>
-    <h1>Восстановление момента сил по моменту импульса</h1>
+    <h1>Вычисление момента сил по функции момента импульса</h1>
     
     <div class="container flex full-width">
         <div class="container flex col-2">
@@ -40,7 +41,7 @@
 			</div>
     </div>
     <div class="container button-field">
-        <button id="convert-btn">Перевести</button>
+        <button onclick="calculate()">Перевести</button>
     </div>
     <p id="error"></p>
     
