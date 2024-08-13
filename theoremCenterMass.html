@@ -1,22 +1,22 @@
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bouncing Balls - Simulation</title>
+    <title>Движение центра масс</title>
     <link rel="stylesheet" href="styles/conf.css">
 </head>
 <body>
-<h2>Simulation</h2>
-<div id="configButtonContainer">
-    <button type="button" onclick="toggleForm()">Configurate</button>
-</div>
+<h2>Симуляция</h2>
+    <button type="button" onclick="toggleForm()" class="accordion" id="configButton">Настройки</button>
+<div id="config">
 <form id="configForm">
-    <label for="ballCount">Number of Balls:</label>
+    <label for="ballCount">Число шаров:</label>
     <input type="number" id="ballCount" name="ballCount" min="1" value="3" max="50" required>
-    <button type="button" onclick="generateRandomParameters()">Generate Random Parameters</button>
-    <button type="button" onclick="startSimulation()">Start Simulation</button>
+    <button type="button" onclick="generateRandomParameters()">Задать случайные параметры</button>
+    <button type="button" onclick="startSimulation()">Начать симуляцию</button>
     <div id="ballParameters"></div>
 </form>
+</div>
 <canvas id="canvas" width="800" height="550"></canvas>
 <div id="info" align="center"></div>
 

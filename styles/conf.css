@@ -6,7 +6,8 @@ body {
 
 input {
     padding: 5px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+    margin-top: 20px;
 }
 
 button {
@@ -18,10 +19,44 @@ button {
     cursor: pointer;
 }
 
-#configButtonContainer {
-    margin-bottom: 10px; /* Отступ снизу */
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
 }
 
-#configForm {
-    display: none;
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+#config {
+  padding: 0 18px;
+  background-color: #cccccc20;
+  overflow: auto;
+  max-height: 0;
+  transition: max-height 0.2s ease-out;
+}
+
+.accordion:after {
+  content: '\02795'; /* Unicode character for "plus" sign (+) */
+  font-size: 13px;
+  color: #777;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+
+#canvas {
+	margin-top:20px;
 }

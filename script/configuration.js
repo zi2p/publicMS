@@ -12,20 +12,20 @@ function generateBallInputs() {
         const ballDiv = document.createElement('div');
 
         ballDiv.innerHTML = `
-          <h3>Ball ${ballNumber}</h3>
-          <label for="color${ballNumber}">Color:</label>
+          <h3>Шар ${ballNumber}</h3>
+          <label for="color${ballNumber}">Цвет:</label>
           <input type="color" id="color${ballNumber}" name="color${ballNumber}" required>
 
-          <label for="initialX${ballNumber}">Initial X:</label>
+          <label for="initialX${ballNumber}">Начальная x:</label>
           <input type="number" id="initialX${ballNumber}" name="initialX${ballNumber}" value="0" min="50" max="750" required>
 
-          <label for="initialY${ballNumber}">Initial Y:</label>
+          <label for="initialY${ballNumber}">Начальная y:</label>
           <input type="number" id="initialY${ballNumber}" name="initialY${ballNumber}" value="0" min="50" max="500" required>
 
-          <label for="vx${ballNumber}">Initial VX:</label>
+          <label for="vx${ballNumber}">Начальная v<sub>x</sub>:</label>
           <input type="number" id="vx${ballNumber}" name="vx${ballNumber}" value="2" min="-5" max="5" required>
 
-          <label for="vy${ballNumber}">Initial VY:</label>
+          <label for="vy${ballNumber}">Начальная v<sub>y</sub>:</label>
           <input type="number" id="vy${ballNumber}" name="vy${ballNumber}" value="2" min="-5" max="5" required>
 
           <hr>
@@ -36,8 +36,15 @@ function generateBallInputs() {
 }
 
 function toggleForm() {
-    var form = document.getElementById('configForm');
-    form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'block' : 'none';
+    var form = document.getElementById('config');
+    //form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'block' : 'none';
+	
+    if (form.style.maxHeight) {
+      form.style.maxHeight = null;
+    } else {
+      form.style.maxHeight = "460px";
+    }
+    document.getElementById('configButton').classList.toggle("active");
 }
 
 function generateRandomParameters() {

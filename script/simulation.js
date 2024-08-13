@@ -36,10 +36,14 @@ function getBallsParameters() {
 }
 
 function startSimulation() {
-    ballParameters = getBallsParameters();
+	document.getElementById('config').style.maxHeight = null;
+	document.getElementById('configButton').classList.remove("active");
+    
+	ballParameters = getBallsParameters();
 
     canvas = document.getElementById('canvas');
     ctx = canvas.getContext('2d');
+	ctx.font = '16px Arial';
 
     infoDiv = document.getElementById('info');
 
@@ -182,6 +186,7 @@ function draw(timestamp) {
         ctx.beginPath();
         ctx.arc(centerMass.x, centerMass.y, 10, 0, 2 * Math.PI);
         ctx.fill();
+		ctx.fillText('Центр масс', centerMass.x+10, centerMass.y-10);
 
         // Draw balls
         for (const ball of balls) {
@@ -192,9 +197,9 @@ function draw(timestamp) {
         }
 
         // Display information about center mass
-        infoDiv.innerHTML = `Center Mass<br>`;
-        infoDiv.innerHTML += `Position: (${centerMass.x.toFixed(2)}, ${centerMass.y.toFixed(2)})<br>`;
-        infoDiv.innerHTML += `Velocity: (${centerMass.vx.toFixed(2)}, ${centerMass.vy.toFixed(2)})`;
+        infoDiv.innerHTML = `Центр масс<br>`;
+        infoDiv.innerHTML += `Положение: (${centerMass.x.toFixed(2)}, ${centerMass.y.toFixed(2)})<br>`;
+        infoDiv.innerHTML += `Скорость: (${centerMass.vx.toFixed(2)}, ${centerMass.vy.toFixed(2)})`;
 
         lastTimestamp = timestamp;
     }
