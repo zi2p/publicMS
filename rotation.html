@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Вращательное движение</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/10.0.0/math.min.js"></script>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+    <h1>Вращательное движение</h1>
+    
+    <div class="container flex full-width">
+			<div class="input-field full-width flex small">
+            <label class="mg-w5">β(t)= </label><input class="small" type="text" id="beta">
+			</div>
+			<div class="input-field full-width flex">
+            <label class="mg-w5">ω<sub>0</sub>= </label><input class="small" type="number" id="omega">
+			</div>
+			<div class="input-field full-width flex">
+            <label class="mg-w5">φ<sub>0</sub>= </label><input class="small" type="number" id="phi">
+			</div>
+    </div>
+    <div class="container button-field">
+        <button onclick="calculate()">Перевести</button>
+    </div>
+	<p id="result"></p>
+    <p id="error"></p>
+    
+    <script src="script/rotation.js" type="module"></script> 
+</body>
+</html>
